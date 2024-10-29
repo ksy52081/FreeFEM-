@@ -1,0 +1,9 @@
+apiVersion: v2
+name: freefem
+description: A Helm chart for deploying FreeFEM++ on Kubernetes
+version: 0.1.0
+appVersion: "4.9"apiVersion: v2
+name: freefem
+description: A Helm chart for deploying FreeFEM++ on Kubernetes
+version: 0.1.0
+appVersion: "4.9"
