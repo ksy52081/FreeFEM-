@@ -25,7 +25,12 @@ spec:
           volumeMounts:
             - name: scripts
               mountPath: /scripts
+            - name: data
+              mountPath: /freefem/data
       volumes:
         - name: scripts
           configMap:
             name: {{ include "freefem.fullname" . }}-configmap
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "freefem.fullname" . }}-pvc
