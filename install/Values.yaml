@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: freefem/freefem
+  tag: "4.9"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  limits:
+    cpu: 1
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+
+configMap:
+  enabled: true
+  data:
+    freefem-script.edp: |
+      // Your FreeFEM++ script here
+      mesh Th = square(20, 20);
+      fespace Vh(Th, P1);
+      Vh u, v;
+      solve Poisson(u, v) = 
+        int2d(Th)(dx(u)*dx(v) + dy(u)*dy(v))
+        - int2d(Th)(1*v)
+        + on(1, 2, 3, 4, u=0);
+      plot(u);
